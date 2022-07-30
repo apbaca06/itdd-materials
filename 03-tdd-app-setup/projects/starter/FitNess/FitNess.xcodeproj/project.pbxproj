@@ -100,9 +100,25 @@
 		37246398289563AC00B53D2A /* FitNessTests */ = {
 			isa = PBXGroup;
 			children = (
-				372463A02895640400B53D2A /* AppModelTests.swift */,
+				372463A228956CF700B53D2A /* Cases */,
 			);
 			path = FitNessTests;
+			sourceTree = "<group>";
+		};
+		372463A228956CF700B53D2A /* Cases */ = {
+			isa = PBXGroup;
+			children = (
+				372463A328956CFD00B53D2A /* App Model */,
+			);
+			path = Cases;
+			sourceTree = "<group>";
+		};
+		372463A328956CFD00B53D2A /* App Model */ = {
+			isa = PBXGroup;
+			children = (
+				372463A02895640400B53D2A /* AppModelTests.swift */,
+			);
+			path = "App Model";
 			sourceTree = "<group>";
 		};
 		4CBCDEB82701427500E8992C /* App Layer */ = {
