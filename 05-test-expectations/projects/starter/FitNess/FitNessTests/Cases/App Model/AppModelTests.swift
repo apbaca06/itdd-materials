@@ -43,6 +43,7 @@ class AppModelTests: XCTestCase {
   }
 
   override func tearDownWithError() throws {
+    sut.stateChangedCallback = nil
     sut = nil
     try super.tearDownWithError()
   }
@@ -181,4 +182,26 @@ class AppModelTests: XCTestCase {
   }
 
   // MARK: - State Changes
+  
+  func testAppModel_whenStateChanges_executesCallback() {
+    // given
+    givenInProgress()
+    var observedState = AppState.notStarted
+
+    // 1
+    let expected = expectation(description: "callback happened")
+    sut.stateChangedCallback = { model in
+      observedState = model.appState
+      // 2
+      expected.fulfill()
+    }
+
+    // when
+    sut.pause()
+
+    // then
+    // 3
+    wait(for: [expected], timeout: 1)
+    XCTAssertEqual(observedState, .paused)
+  }
 }

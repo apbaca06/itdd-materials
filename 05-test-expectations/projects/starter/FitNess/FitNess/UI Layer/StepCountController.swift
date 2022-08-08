@@ -56,7 +56,11 @@ class StepCountController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    AppModel.instance.stateChangedCallback = { model in
+      DispatchQueue.main.async {
+        self.updateUI()
+      }
+    }
     updateUI()
   }
 
