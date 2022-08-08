@@ -32,4 +32,15 @@
 
 import Foundation
 
-// Add the Data Model class here:
+class DataModel {
+  
+  var goal: Int?
+  var steps: Int = 0
+  
+  var goalReached: Bool {
+    guard let goal = goal else {
+      return false
+    }
+    return steps >= goal
+  }
+}

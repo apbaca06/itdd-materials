@@ -35,9 +35,13 @@ import Foundation
 class AppModel {
   static let instance = AppModel()
 
+  let dataModel = DataModel()
   var appState: AppState = .notStarted
 
-  func start() {
+  func start() throws {
+    guard dataModel.goal != nil else {
+      throw AppError.goalNotSet
+    }
     appState = .inProgress
   }
 }

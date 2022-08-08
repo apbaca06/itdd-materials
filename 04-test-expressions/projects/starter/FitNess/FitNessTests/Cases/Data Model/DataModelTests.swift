@@ -1,4 +1,4 @@
-/// Copyright (c) 2021 Razeware LLC
+/// Copyright (c) 2022 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -33,64 +33,28 @@
 import XCTest
 @testable import FitNess
 
-class StepCountControllerTests: XCTestCase {
-  //swiftlint:disable implicitly_unwrapped_optional
-  var sut: StepCountController!
+class DataModelTests: XCTestCase {
+  var sut: DataModel!
+  
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+      sut = DataModel()
+    }
 
-  override func setUpWithError() throws {
-    try super.setUpWithError()
-    sut = StepCountController()
+    override func tearDownWithError() throws {
+      sut = nil
+       try super.tearDownWithError()
+    }
+
+  func testModel_whenStarted_goalIsNotReached() {
+    XCTAssertFalse(sut.goalReached, "goalReached should be false when the model is created")
   }
-
-  override func tearDownWithError() throws {
-    sut = nil
-    try super.tearDownWithError()
+  
+  func testModel_whenStepsReachGoal_goalIsReached() {
+    sut.goal = 1000
+    
+    sut.steps = 1000
+    
+    XCTAssertTrue(sut.goalReached)
   }
-
-  // MARK: - Given
-
-  // MARK: - When
-  private func whenStartStopPauseCalled() {
-    sut.startStopPause(nil)
-  }
-
-  // MARK: - Initial State
-
-  func testController_whenCreated_buttonLabelIsStart() {
-    // given
-    sut.viewDidLoad()
-
-    // then
-    let text = sut.startButton.title(for: .normal)
-    XCTAssertEqual(text, AppState.notStarted.nextStateButtonLabel)
-  }
-
-  // MARK: - Goal
-  func givenGoalSet() {
-    AppModel.instance.dataModel.goal = 1000
-  }
-
-  // MARK: - In Progress
-
-  func testController_whenStartTapped_appIsInProgress() {
-    givenGoalSet()
-    // when
-    whenStartStopPauseCalled()
-
-    // then
-    let state = AppModel.instance.appState
-    XCTAssertEqual(state, AppState.inProgress)
-  }
-
-  func testController_whenStartTapped_buttonLabelIsPause() {
-    givenGoalSet()
-    // when
-    whenStartStopPauseCalled()
-
-    // then
-    let text = sut.startButton.title(for: .normal)
-    XCTAssertEqual(text, AppState.inProgress.nextStateButtonLabel)
-  }
-
-  // MARK: - Chase View
 }
