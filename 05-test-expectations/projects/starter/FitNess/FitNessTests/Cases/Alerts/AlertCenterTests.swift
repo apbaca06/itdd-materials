@@ -64,14 +64,11 @@ class AlertCenterTests: XCTestCase {
   
   func testPostingTwoAlerts_generatesTwoNotifications() {
     //given
-    let exp1 = expectation(
+    let exp = expectation(
       forNotification: AlertNotification.name,
       object: sut,
       handler: nil)
-    let exp2 = expectation(
-      forNotification: AlertNotification.name,
-      object: sut,
-      handler: nil)
+    exp.expectedFulfillmentCount = 2
     let alert1 = Alert("this is the first alert")
     let alert2 = Alert("this is the second alert")
 
@@ -80,6 +77,6 @@ class AlertCenterTests: XCTestCase {
     sut.postAlert(alert: alert2)
 
     // then
-    wait(for: [exp1, exp2], timeout: 1)
+    wait(for: [exp], timeout: 1)
   }
 }
