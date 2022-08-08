@@ -36,11 +36,26 @@ class DataModel {
   
   var goal: Int?
   var steps: Int = 0
-  
   var goalReached: Bool {
-    guard let goal = goal else {
+    guard let goal = goal,
+    steps >= goal,
+          !caught
+    else {
       return false
     }
     return steps >= goal
+  }
+  // MARK: - Nessie
+  let nessie = Nessie()
+  var distance: Double = 0
+  var caught: Bool {
+    distance > 0 && nessie.distance >= distance
+  }
+  
+  func reset() {
+    goal = nil
+    steps = 0
+    distance = 0
+    nessie.distance = 0
   }
 }
