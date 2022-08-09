@@ -73,6 +73,10 @@ class StepCountControllerTests: XCTestCase {
   func givenCompleted() {
     AppModel.instance.setToComplete()
   }
+  
+  func expectTextChange() -> XCTestExpectation {
+    keyValueObservingExpectation(for: sut.startButton, keyPath: "titleLabel.text")
+  }
 
   // MARK: - When
   private func whenStartStopPauseCalled() {
@@ -207,9 +211,7 @@ class StepCountControllerTests: XCTestCase {
   func testController_whenCaught_buttonLabelIsTryAgain() {
     // given
     givenInProgress()
-    let exp = expectation(description: "button title change")
-    let observer = ButtonObserver()
-    observer.observe(sut.startButton, expectation: exp)
+    let exp = expectTextChange()
 
     // when
     whenCaught()
@@ -223,9 +225,7 @@ class StepCountControllerTests: XCTestCase {
   func testController_whenComplete_buttonLabelIsStartOver() {
     // given
     givenInProgress()
-    let exp = expectation(description: "button title change")
-    let observer = ButtonObserver()
-    observer.observe(sut.startButton, expectation: exp)
+    let exp = expectTextChange()
     
     // when
     whenCompleted()
