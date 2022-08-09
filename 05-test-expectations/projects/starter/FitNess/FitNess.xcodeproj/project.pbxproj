@@ -34,6 +34,7 @@
 		4CF6A59E270D02F1006F0292 /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6A59D270D02F1006F0292 /* RootViewController+Tests.swift */; };
 		DF0CB17328A1118900F72B83 /* ButtonObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB17228A1118900F72B83 /* ButtonObserver.swift */; };
 		DF0CB17528A1199900F72B83 /* RootViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB17428A1199900F72B83 /* RootViewControllerTests.swift */; };
+		DF0CB17928A2208A00F72B83 /* Notification+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0CB17828A2208A00F72B83 /* Notification+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		4CF6A59D270D02F1006F0292 /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
 		DF0CB17228A1118900F72B83 /* ButtonObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonObserver.swift; sourceTree = "<group>"; };
 		DF0CB17428A1199900F72B83 /* RootViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerTests.swift; sourceTree = "<group>"; };
+		DF0CB17828A2208A00F72B83 /* Notification+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 		4CF6A59C270D02DB006F0292 /* Test Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				DF0CB17728A2206F00F72B83 /* Alerts */,
 				4C566FB1270D1B5F00499DB9 /* App Layer */,
 				4C566FB2270D1B6A00499DB9 /* Data Model */,
 			);
@@ -285,6 +288,14 @@
 				DF0CB17428A1199900F72B83 /* RootViewControllerTests.swift */,
 			);
 			path = "App Layer";
+			sourceTree = "<group>";
+		};
+		DF0CB17728A2206F00F72B83 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				DF0CB17828A2208A00F72B83 /* Notification+Tests.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +448,7 @@
 				4CCF441C270687DC00DD29AB /* DataModelTests.swift in Sources */,
 				4CCF440E27052F8000DD29AB /* StepCountControllerTests.swift in Sources */,
 				4C566FB6270D1B9E00499DB9 /* AppModel+Tests.swift in Sources */,
+				DF0CB17928A2208A00F72B83 /* Notification+Tests.swift in Sources */,
 				4CBEFC98270D24EF00EB190B /* AlertCenterTests.swift in Sources */,
 				4CF6A59B270A567F006F0292 /* ViewControllers.swift in Sources */,
 				DF0CB17328A1118900F72B83 /* ButtonObserver.swift in Sources */,
