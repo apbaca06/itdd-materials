@@ -35,6 +35,9 @@ import Foundation
 class AlertCenter {
   static var instance = AlertCenter()
   
+  var alertCount: Int {
+    alertQueue.count
+  }
   private var alertQueue: [Alert] = []
 
   init(center: NotificationCenter = .default) {
@@ -47,11 +50,26 @@ class AlertCenter {
   func postAlert(alert: Alert) {
     guard !alertQueue.contains(alert) else { return }
     alertQueue.append(alert)
-    let notification = Notification(name: AlertNotification.name, object: self, userInfo: nil)
+    let notification = Notification(name: AlertNotification.name, object: self, userInfo: [AlertNotification.Keys.alert: alert])
     notificationCenter.post(notification)
+  }
+  
+  // MARK: - Alert Handling
+  func clearAlerts() {
+    alertQueue.removeAll()
   }
 }
 
 // MARK: - Class Helpers
 extension AlertCenter {
+  
+  class func listenForAlerts(_ callback: @escaping (AlertCenter) -> Void) {
+    instance.notificationCenter
+      .addObserver(
+        forName: AlertNotification.name,
+        object: instance,
+        queue: .main) { _ in
+      callback(instance)
+      }
+  }
 }
